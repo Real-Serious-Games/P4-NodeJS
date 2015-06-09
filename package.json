@@ -1,5 +1,5 @@
 {
-  "name": "P4-NodeJS",
+  "name": "p4js",
   "version": "1.0.0",
   "description": "NodeJS Javascript API for Perforce. ",
   "main": "p4j.js",
