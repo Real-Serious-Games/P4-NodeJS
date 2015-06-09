@@ -1,0 +1,33 @@
+{
+  "name": "P4-NodeJS",
+  "version": "1.0.0",
+  "description": "NodeJS Javascript API for Perforce. ",
+  "main": "p4j.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Real-Serious-Games/P4-NodeJS"
+  },
+  "keywords": [
+    "Javascript",
+    "NodeJS",
+    "Perforce",
+    "P4"
+  ],
+  "author": "ashley.davis@realseriousgames.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Real-Serious-Games/P4-NodeJS/issues"
+  },
+  "homepage": "https://github.com/Real-Serious-Games/P4-NodeJS",
+  "dependencies": {
+    "chai": "^3.0.0",
+    "promise": "^7.0.1",
+    "q": "^1.4.1",
+    "quote": "^0.4.0",
+    "string": "^3.2.0",
+    "yargs": "^3.10.0"
+  }
+}
