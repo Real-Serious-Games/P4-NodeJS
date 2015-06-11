@@ -65,6 +65,8 @@ module.exports = function (config, log) {
 	//
 	var p4PythonScript = path.join(__dirname, 'p4_to_json.py');
 
+	var execBufferSize = 1024 * 1024;
+
 	// 
 	// Run a p4 command and return a promise that delivers json results.
 	//
@@ -81,6 +83,38 @@ module.exports = function (config, log) {
 				return JSON.parse(output);
 			});
 	};
+
+	//
+	// Get latest files for a particular path.
+	//
+	// options
+	//		force: 	true|false		Enables Perforce force get, overwriting all files (be careful with this!)
+	//
+	self.getLatest = function (path, options) {
+		if (!path) {
+			throw new Error('Path to get-latest not specified.');			
+		}
+
+		var p4Args = [
+			"-u", config.p4User,
+			"-c", config.p4Workspace,
+			"-p", config.p4Host,
+			"sync", 
+		];
+
+		if (options.force) {
+			p4Args.push('-f');
+		}
+
+		p4Args.push(quote(path));
+
+
+		return exec("p4 " + p4Args.join(' '), {
+				cwd: config.workingDirectory,
+				maxBuffer: execBufferSize,
+			});
+	},
+
 
 	//
 	// Create a new change set with a specified name.
@@ -107,7 +141,7 @@ module.exports = function (config, log) {
 		return exec("p4 " + p4Args, {
 				cwd: config.workingDirectory,
 				stdin: changeSpec,
-				maxBuffer: 1024 * 1024,
+				maxBuffer: execBufferSize,
 			})
 			.then(function (output) {
 				var matched = /Change (\d+) created/.exec(output);
@@ -188,7 +222,7 @@ module.exports = function (config, log) {
 
 		return exec("p4 " + p4Args, {
 				cwd: config.workingDirectory,
-				maxBuffer: 1024 * 1024,
+				maxBuffer: execBufferSize,
 			});
 	};
 
@@ -211,7 +245,7 @@ module.exports = function (config, log) {
 
 		return exec("p4 " + p4Args, {
 				cwd: config.workingDirectory,
-				maxBuffer: 1024 * 1024,
+				maxBuffer: execBufferSize,
 			});
 	};
 
@@ -235,7 +269,7 @@ module.exports = function (config, log) {
 
 		return exec("p4 " + p4Args, {
 				cwd: config.workingDirectory,
-				maxBuffer: 1024 * 1024,
+				maxBuffer: execBufferSize,
 			});
 	};
 
@@ -271,7 +305,7 @@ module.exports = function (config, log) {
 
 		return exec("p4 " + p4Args, {
 				cwd: config.workingDirectory,
-				maxBuffer: 1024 * 1024,
+				maxBuffer: execBufferSize,
 			});
 	};
 
@@ -294,7 +328,7 @@ module.exports = function (config, log) {
 
 		return exec("p4 " + p4Args, {
 				cwd: config.workingDirectory,
-				maxBuffer: 1024 * 1024,
+				maxBuffer: execBufferSize,
 			});
 	};
 

@@ -20,6 +20,21 @@ try
 
 	var p4 = new P4(config);
 
+	console.log('Getting latest of ' + repoPath);
+
+	p4.getLatest(repoPath, { force: true })
+		.then(function () {
+			console.log('Got latest of ' + repoPath);
+		})
+		.catch(function (err) {
+			console.log('Error:');
+			console.log(err.stack);
+		})
+		.done(function () {
+			console.log('done');
+		});
+
+/*
 	p4.deleteEmptyChangeSets(repoPath)
 		.then(function () {
 			return p4.createChangeSet("Build Test");
@@ -36,10 +51,8 @@ try
 		})
 		.done(function () {
 			console.log('done');
-			console.log(arguments);
 		});
 
-/*
 	p4.deleteEmptyChangeSets()
 		.catch(function (err) {
 			console.log('Error:');
@@ -47,7 +60,6 @@ try
 		})
 		.done(function () {
 			console.log('done');
-			console.log(arguments);
 		});
 
 	p4.getPendingChangeSets()
@@ -65,7 +77,6 @@ try
 		})
 		.done(function () {
 			console.log('done');
-			console.log(arguments);
 		});
 
 	p4.createChangeSet('Build Test')
@@ -78,7 +89,6 @@ try
 		})
 		.done(function () {
 			console.log('done');
-			console.log(arguments);
 		});
 
 	p4.createChangeSet('ding ding')
@@ -93,7 +103,6 @@ try
 		})
 		.done(function () {
 			console.log('done');
-			console.log(arguments);
 		});
 
 	p4.findChangeSet('Build')
@@ -109,7 +118,6 @@ try
 		})
 		.done(function () {
 			console.log('done');
-			console.log(arguments);
 		});
 */
 }
