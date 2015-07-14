@@ -1,0 +1,31 @@
+P4 NodeJS Documentation / Notes
+## Notes ##
+Q: What does p4 mean?
+A: It is an abreviation for Perforce
+
+## Testing ##
+To test the library run the p4_test.js file from node using 
+'node p4_test <p4 local path>'
+
+## Usage ##
+
+Initialize an instance of the p4j.js class with the perforce configuration as a paramater. 
+'var p4 = new P4(config);
+
+The configuration file exports/creates a dictonary with the following paramaters, which are analgous to their commandline equivilents. In the Playstudios development environment these paramaters can be derived from the p4 info command line information. the dictionary options are used to override the global paramaters for perforce. 
+p4User: -u user , Overrides any P4USER, USER, or USERNAME setting with the specified user name.
+p4Workspace: -c client, Overrides any P4CLIENT setting with the specified client name.
+p4Host: -p port, Overrides any P4PORT setting with the specified protocol:host:port.
+For more information about global flags on perforce look at http://www.perforce.com/perforce/r15.1/manuals/cmdref/global.options.html
+
+Available library funcinality is:
+.getLatest : sync
+.createChangeSet : create changelist
+.getPendingChangeSets : get changelists
+.findChangeSet : finds change set by name
+.checkOut : checkout a list of files to the named change set
+.revertAll : revert all files in a given path
+.revertUnchanged : revert all files Open for edit which are unchanged.
+.deleteEmptyChangeSets : remove all change sets with no items.
+.deleteEmptyChangeSet : remove a single empty change set by passng an id in.
+.submit : submit a change set id
