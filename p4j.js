@@ -224,6 +224,44 @@ module.exports = function (config, log) {
 				maxBuffer: execBufferSize,
 			});
 	};
+	
+	//
+	// Add dir to changeset.
+	//
+	self.addDirToChangeSet = function (changeSetId, dir, globPatern) {
+		if (!changeSetId) {
+			throw new Error('Change set id not specified.');
+		}
+		
+		if (!dir) {
+			throw new Error('Directory to add not specified.');
+		}
+		
+		globPatern = globPatern || "/**/*"
+		
+		var filesListFileName = "files.txt";
+		
+		var globOptions = {};
+		globOptions.sync = true;
+		globOptions.nodir = true;
+		
+		var os = require('os');
+		fs.writeFileSync(filesListFileName, glob(dir + globPatern, globOptions).join(os.EOL));
+			
+		var p4Args = [
+			"-u", config.p4User,
+			"-c", config.p4Workspace,
+			"-p", config.p4Host,
+			"-x", path.join(config.workingDirectory, filesListFileName),
+			"add",
+			"-c", changeSetId
+		]
+		
+		return spawn("p4", p4Args, {
+				cwd: dir,
+				maxBuffer: execBufferSize,
+			});
+	}
 
 	//
 	// Revert all checked out files.
