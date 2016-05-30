@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Real-Serious-Games/P4-NodeJS",
   "dependencies": {
     "chai": "^3.0.0",
+    "globby": "^3.0.1",
     "promise": "^7.0.1",
     "q": "^1.4.1",
     "quote": "^0.4.0",

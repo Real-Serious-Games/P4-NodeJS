@@ -28,6 +28,8 @@ module.exports = function (config, log) {
 	var quote = require('quote');
 	var path = require('path');
 	var S = require('string');
+	var glob = require('glob');
+	var fs = require('fs');
 
 	var self = this;
 
