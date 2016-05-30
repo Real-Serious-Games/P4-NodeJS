@@ -106,10 +106,9 @@ module.exports = function (config, log) {
 			p4Args.push('-f');
 		}
 
-		p4Args.push(quote(path));
+		p4Args.push(path);
 
-
-		return exec("p4 " + p4Args.join(' '), {
+		return spawn("p4", p4Args, {
 				cwd: config.workingDirectory,
 				maxBuffer: execBufferSize,
 			});
