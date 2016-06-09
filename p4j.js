@@ -24,6 +24,7 @@ module.exports = function (config, log) {
 	}
 
 	var exec = require('./exec')(config, log);
+	var spawn = require('./spawn')(config, log);
 	var Promise = require('promise');
 	var quote = require('quote');
 	var path = require('path');
