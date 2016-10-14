@@ -272,7 +272,7 @@ module.exports = function (config, log) {
 	self.revertAll = function (path) {
 
 		if (!path) {
-			throw new Error('Path to checkout not specified.');			
+			throw new Error('Path to revertAll not specified.');			
 		}
 
 		var p4Args = [
@@ -295,7 +295,7 @@ module.exports = function (config, log) {
 	self.revertUnchanged = function (path) {
 
 		if (!path) {
-			throw new Error('Path to checkout not specified.');			
+			throw new Error('Path to revertUnchanged not specified.');			
 		}
 
 		var p4Args = [
