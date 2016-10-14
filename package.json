@@ -1,6 +1,6 @@
 {
   "name": "p4js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "NodeJS Javascript API for Perforce. ",
   "main": "p4j.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/Real-Serious-Games/P4-NodeJS",
   "dependencies": {
     "chai": "^3.0.0",
-    "globby": "^3.0.1",
+    "glob": "^7.1.1",
     "promise": "^7.0.1",
     "q": "^1.4.1",
     "quote": "^0.4.0",
