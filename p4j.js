@@ -372,5 +372,42 @@ module.exports = function (config, log) {
 			});
 	};
 
+	//
+	// Returns a JSON object containing all the information
+	// from running p4 info.
+	//
+	self.info = function () {
+
+		var p4Args = [
+			"-u", config.p4User,
+			"-c", config.p4Workspace,
+			"-p", config.p4Host,
+			"info"
+		].join(' ');
+
+		return exec("p4 " + p4Args, {
+				cwd: config.workingDirectory,
+				maxBuffer: execBufferSize
+			})
+			.then(function (output) {
+
+				var jsonObj = {};
+
+				output.split(/\r?\n/g).forEach(function (line) {
+
+					var entry = /(.+?)\: (.*)/.exec(line);
+
+					// Skip lines that don't have the format of <property name>: <value>
+					if (!entry) {
+						return;
+					}
+
+					jsonObj[entry[1]] = entry[2];
+				});
+
+				return jsonObj;
+			});
+	};
+
 	validateConfig();
 };

@@ -22,6 +22,18 @@ try
 
 	console.log('Getting latest of ' + repoPath);
 
+	p4.info()
+		.then(function (info) {
+			console.dir(info);
+		})
+		.catch(function (err) {
+			console.log('Error:');
+			console.log(err.stack);
+		})
+		.done(function () {
+			console.log("done");
+		});
+
 	p4.getLatest(repoPath, { force: true })
 		.then(function () {
 			console.log('Got latest of ' + repoPath);
