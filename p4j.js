@@ -364,11 +364,10 @@ module.exports = function (config, log) {
 			"-p", config.p4Host,
 			"submit", 
 			"-c", changeSetId,
-		].join(' ');
+		];
 
-		return exec("p4 " + p4Args, {
+		return spawn("p4", p4Args, {
 				cwd: config.workingDirectory,
-				maxBuffer: execBufferSize,
 			});
 	};
 
